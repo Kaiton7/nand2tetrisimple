@@ -12,23 +12,73 @@ class Memory {
 
     /** Initializes the class. */
     function void init() {
+		let RAM  = 0;
+		let HEAP = 2048;
+		let HEAP[0] = -1;
+		let HEAP[1] = 16384 - 2048 -2;
+		return;
     }
 
     /** Returns the RAM value at the given address. */
     function int peek(int address) {
+		return RAN[address];
     }
 
     /** Sets the RAM value at the given address to the given value. */
     function void poke(int address, int value) {
+		let RAM[address] = value;
+		return;
     }
 
     /** Finds an available RAM block of the given size and returns
      *  a reference to its base address. */
     function int alloc(int size) {
-    }
+		var Array current, selected, block;
+		var int currentSize, selectedSize;
+
+		if(size<0){
+			do Sys.error(5);
+		}
+
+		let current = HEAP;
+		let selected = -1;
+		let selectedSize = HEAP[1] +1;
+		let currentSize = current[1];
+		while(current > -1){
+			if(~(currentSize < (size+2))){
+				if(currentSize < selectedSize){
+					let selected = current;
+					let selectedSize = currentSize;
+				}
+			}
+			let current  = current[0];
+			let currentSize = current[1];			
+			
+		}
+		if(selected = -1){
+			do Sys.error(6);
+		}
+
+		let selected[1] = selected[1] -size -2;
+		let block  = selected+selected[1] +1;
+		let block[0] = -1;
+		let block[1] =size;
+		return block +2;
+		}
 
     /** De-allocates the given object (cast as an array) by making
      *  it available for future allocations. */
     function void deAlloc(Array o) {
+		var Array current, block;
+		let block = o -2;
+		let current = HEAP;
+		while(current[0] >0 ){
+			let current[0] = block;
+		}
+		let current[0] = block;
+		return
+
+
+
     }    
 }
