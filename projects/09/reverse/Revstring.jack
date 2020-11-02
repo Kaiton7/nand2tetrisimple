@@ -1,0 +1,34 @@
+class Revstring{
+	field Array a;
+	field int s;
+	field int i;
+	constructor Revstring new(){
+		//var Array a;
+		let a = Array.new(8);
+		let i = 0;
+      	while (i < 3) {
+         let a[i] = Keyboard.readLine("Enter a string: ");
+         //let sum = sum + a[i];
+         let i = i + 1;
+      }
+	  return this;
+	}
+	  method void dispose(){
+		  do Memory.deAlloc(this);
+		  return;
+	  }
+	  method void pp(){
+		  let i =0;
+		  let s = Memory.peek(0);
+		  do Output.printInt(s);
+		  //do Output.printChar("x");
+		  do Output.printString("Hello world!");
+		  while(i<3){
+		  	do Output.printString(a[i]);
+			let i = i+1;
+		  }
+		  		  do Output.printString("Hello world!");
+
+		  return;
+	  }
+}

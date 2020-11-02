@@ -1,0 +1,10 @@
+class Main{
+	function void main(){
+		var Revstring paper;
+		let paper = Revstring.new();
+		//paper.reverse();
+		do paper.pp();
+		do paper.dispose();
+		return;
+	}
+}

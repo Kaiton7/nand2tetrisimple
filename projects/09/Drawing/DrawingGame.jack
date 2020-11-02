@@ -1,0 +1,84 @@
+
+class DrawingGame {
+	field Pen pen;
+
+	field int direction;
+
+	constructor DrawingGame new(){
+		let pen = Pen.new(0,0,5);
+		return this;
+	}
+
+	method void dispose(){
+		do pen.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method void run(){
+		var char key;
+		var boolean exit;
+		
+		let exit = false;
+
+		while(~exit){
+
+			while(key=0){
+				let key = Keyboard.keyPressed();
+				if(key = 90){
+					do pen.docSize();
+
+				}
+
+				if(key=88){
+					do pen.incSize();
+				}
+			}
+
+			while(~(key=0)){
+				let key = Keyboard.keyPressed();
+
+				if(key = 81){
+					let exit=true;
+				}
+				if (key = 131) {
+                    let direction = 1;
+                    do movePen();
+                }
+                if (key = 133) {
+                    let direction = 2;
+                    do movePen();
+                }
+                if (key = 130) {
+                    let direction = 3;
+                    do movePen();
+                }
+                if (key = 132) {
+                    let direction = 4;
+                    do movePen();
+				}
+
+			}
+		}
+		return;
+	}
+	method void movePen(){
+		if (direction = 1) {
+            do pen.moveUp();
+        }
+        if (direction = 2) {
+            do pen.moveDown();
+        }
+        if (direction = 3) {
+            do pen.moveLeft();
+        }
+        if (direction = 4) {
+            do pen.moveRight();
+        }
+
+        do Sys.wait(10); // Delays the next movement.
+        return;
+	}
+
+
+}
